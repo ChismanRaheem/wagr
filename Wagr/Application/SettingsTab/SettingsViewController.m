@@ -2,7 +2,7 @@
 //  SettingsViewController.m
 //  Wagr
 //
-//  Copyright (c) 2021 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "SettingsViewController.h"
@@ -34,7 +34,7 @@
 #pragma mark - MAM App Configuration
 
 +(double)getHourlyWage {
-    NSNumber *tempWage = [[[IntuneMAMAppConfigManager instance] appConfigForIdentity:[IntuneMAMEnrollmentManager instance].enrolledAccount] numberValueForKey:@"Wage" queryType:IntuneMAMNumberMax];
+    NSNumber *tempWage = [[[IntuneMAMAppConfigManager instance] appConfigForAccountId:[IntuneMAMEnrollmentManager instance].enrolledAccountId] numberValueForKey:@"Wage" queryType:IntuneMAMNumberMax];
 
     if (tempWage) {
         return [tempWage doubleValue];
@@ -54,7 +54,7 @@
      */
 
     // This creates the AppConfig object to use.
-    id<IntuneMAMAppConfig> appConfig = [[IntuneMAMAppConfigManager instance] appConfigForIdentity:[IntuneMAMEnrollmentManager instance].enrolledAccount];
+    id<IntuneMAMAppConfig> appConfig = [[IntuneMAMAppConfigManager instance] appConfigForAccountId:[IntuneMAMEnrollmentManager instance].enrolledAccountId];
 
     // This queries the app configuration settings in the portal and uses the passed in string as the key to return the value.
     NSString *tempUserName = nil;
@@ -108,7 +108,7 @@
     
 
     // We need the enrolled account UPN for both the SDK and MSAL
-    NSString *enrolledAccount = [IntuneMAMEnrollmentManager instance].enrolledAccount;
+    NSString *enrolledAccount = [IntuneMAMEnrollmentManager instance].enrolledAccountId;
 
     /*
      MSAL needs the application object to perform the sign out. Below creates the same exact application object that's documented and created in LoginViewController.m. If you want more information on it, go to that file for detailed comments and documentation.
@@ -139,7 +139,7 @@
      Deregistering a user notifies the SDK that the user will no longer use the application, and the SDK can stop any of the periodic events for that user account. It also triggers an app unenroll and selective wipe if necessary.
      */
     // For more info: https://docs.microsoft.com/mem/intune/developer/app-sdk-ios#why-does-the-user-need-to-be-deregistered
-    [[IntuneMAMEnrollmentManager instance] deRegisterAndUnenrollAccount:enrolledAccount withWipe:YES];
+    [[IntuneMAMEnrollmentManager instance] deRegisterAndUnenrollAccountId:enrolledAccount withWipe:YES];
 
     /*
      After making sure you have the application object ready to go, we call the sign out method for MSAL.

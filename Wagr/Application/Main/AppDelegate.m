@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Wagr
 //
-//  Copyright (c) 2015 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -71,11 +71,12 @@
      IntuneMAMSettings.aadRedirectUriOverride = @"...";
      */
     // You must add your Client ID or it won't work!
-    IntuneMAMSettings.aadClientIdOverride = @"...";
-    IntuneMAMSettings.aadRedirectUriOverride = @"msauth.com.microsoft.wagr://auth";
+    IntuneMAMSettings.aadClientIdOverride = @"<ClientId>";
+    IntuneMAMSettings.aadAuthorityUriOverride = @"https://login.microsoftonline.com/<Tenantid or Common>";
+    ;
     
     // Check to see if an account is enrolled and act accordingly.
-    NSString *currentUser = [[IntuneMAMEnrollmentManager instance] enrolledAccount];
+    NSString *currentUser = [[IntuneMAMEnrollmentManager instance] enrolledAccountId];
 
     // App Delegate is on the main thread, so there's no need to wrap UI calls in this:
     // [NSOperationQueue mainQueue]

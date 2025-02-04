@@ -2,7 +2,7 @@
 //  LoginViewController.m
 //  Wagr
 //
-//  Copyright (c) 2021 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "LoginViewController.h"
@@ -93,11 +93,16 @@
     MSALCompletionBlock wagrMSALCompletionBlock = ^(MSALResult *result, NSError *error) {
         if (!error)
         {
-            NSLog(@"Sign in for %@ was successful", result.account.username);
+                        //create variable to hold objectId
+                        NSString *accountIdentifer =[[result.account valueForKey:@"_homeAccountId"] valueForKey:@"_objectId"]?: @"";
+                        
+                        //confirm by displaying in console
+                        NSLog(@"Sign in for %@ was successful", result.account.username);
+                        NSLog(@"Confirm %@ identifier", accountIdentifer);
 
             // This will initiate the register and enroll precess for MAM.
             // Link: https://docs.microsoft.com/mem/intune/developer/app-sdk-ios#apps-that-already-use-adal-or-msal
-            [[IntuneMAMEnrollmentManager instance] registerAndEnrollAccount:result.account.username];
+            [[IntuneMAMEnrollmentManager instance] registerAndEnrollAccountId:accountIdentifer];
         }
         // If CA is active, MSAL will respond back with this error.
         else if (error.code == MSALErrorServerProtectionPoliciesRequired) {
@@ -108,7 +113,7 @@
 
             // MSAL stores the User ID in the userInfo dictionary under MSALDisplayableUserIdKey.
             // Access that in order to call the compliance manager with the correct UserId credentials as the identity.
-            [[IntuneMAMComplianceManager instance] remediateComplianceForIdentity:error.userInfo[MSALDisplayableUserIdKey] silent:NO];
+            [[IntuneMAMComplianceManager instance] remediateComplianceForAccountId:error.userInfo[MSALDisplayableUserIdKey] silent:NO];
         }
         // This error happens when the given Client ID wasn't authorized.
         // This could happen if you didn't properly set your Client ID in the AppDelegate.

@@ -2,7 +2,7 @@
 //  DataViewController.m
 //  Wagr
 //
-//  Copyright (c) 2021 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "CalendarData.h"
@@ -83,7 +83,7 @@
  */
 - (BOOL) checkIfSaveToIsAllowed {
     if ([[IntuneMAMPolicyManager instance] policy] &&
-        [[[IntuneMAMPolicyManager instance] policy] isSaveToAllowedForLocation:IntuneMAMSaveLocationLocalDrive withAccountName:nil]) {
+        [[[IntuneMAMPolicyManager instance] policy] isSaveToAllowedForLocation:IntuneMAMSaveLocationLocalDrive withAccountId:nil]) {
         return YES;
     } else {
         return NO;
@@ -96,7 +96,7 @@
  */
 - (BOOL) checkIfOpenFromIsAllowed {
     if ([[IntuneMAMPolicyManager instance] policy] &&
-        [[[IntuneMAMPolicyManager instance] policy] isOpenFromAllowedForLocation:IntuneMAMOpenLocationLocalStorage withAccountName:nil]) {
+        [[[IntuneMAMPolicyManager instance] policy] isOpenFromAllowedForLocation:IntuneMAMOpenLocationLocalStorage withAccountId:nil]) {
         return YES;
     } else {
         return NO;
