@@ -12,15 +12,17 @@
 This is an iOS app that is built with Objective-C. This app gives an example on how to implement MAM and MSAL in your app.
 
 ## Technologies
-* MSAL - version 1.1.19
-* MAM - version 14.5.0
+> Note: Please Update to the latest Frameworks: 
+* MSAL - version 1.6.3 
+* MAM - version 20.2.2 
 
 ## Setup
+> Note: Don't forget to Set api permission for Microsoft Mobile Application Management ref [More Info](https://learn.microsoft.com/mem/intune/developer/app-sdk-get-started#give-your-app-access-to-the-intune-mobile-app-management-service)
 To run this app:s
 
 1. Register Wagr in your Azure portal
 2. Open Wagr.xcworkspace
-3. Open the Info.plist file and find 'IntuneMAMSettings' then change the ADALClientId, ADALRedirectUri, and ADALAuthority to your values
+3. Open the AppDelegate change the aadClientIdOveride, aadRedirectUriOverride, and aadAuthorityOveride to your values
 4. Build the project to your device/simulator
 5. Run the app!
 
