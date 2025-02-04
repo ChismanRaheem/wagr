@@ -73,7 +73,7 @@
     // You must add your Client ID or it won't work!
     IntuneMAMSettings.aadClientIdOverride = @"<ClientId>";
     IntuneMAMSettings.aadAuthorityUriOverride = @"https://login.microsoftonline.com/<Tenantid or Common>";
-    ;
+    IntuneMAMSettings.aadRedirectUriOverride = @"<Redirect>";
     
     // Check to see if an account is enrolled and act accordingly.
     NSString *currentUser = [[IntuneMAMEnrollmentManager instance] enrolledAccountId];
