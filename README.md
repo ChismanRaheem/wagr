@@ -1,5 +1,5 @@
 # Wagr - MAM Sample App in Objective-C
-> A sample iOS app built in Objective-C that uses the MAM SDK and auth with MSAL
+> A sample iOS app built in Objective-C that uses the MAM SDK and auth with MSAL.
 
 ## Table of contents
 * [General info](#general-info)
@@ -17,14 +17,23 @@ This is an iOS app that is built with Objective-C. This app gives an example on 
 * MAM - version 20.2.2 
 
 ## Setup
-> Note: Don't forget to Set api permission for Microsoft Mobile Application Management ref [More Info](https://learn.microsoft.com/mem/intune/developer/app-sdk-get-started#give-your-app-access-to-the-intune-mobile-app-management-service)
-To run this app:s
-
-1. Register Wagr in your Azure portal
-2. Open Wagr.xcworkspace
-3. Open the AppDelegate change the aadClientIdOverride, aadRedirectUriOverride, and aadAuthorityOverride to your values
-4. Build the project to your device/simulator
+To run this app:
+1. Register Wagr in your Azure portal.
+2. Open Wagr.xcworkspace.
+3. Open the AppDelegate change the aadClientIdOverride, aadRedirectUriOverride, and aadAuthorityOverride to your values.
+4. Build the project to your device/simulator.
 5. Run the app!
+
+> Note:  Once you have registered your app within an Azure tenant, and it's showing up under All Applications, you must give your app access to the Intune Mobile App Management service. In the Microsoft Intune admin center:
+> [More Info](https://learn.microsoft.com/mem/intune/developer/app-sdk-get-started#give-your-app-access-to-the-intune-mobile-app-management-service)
+
+1. Go to the Microsoft Entra ID blade.
+2. Under App registrations, go to the listing set up for the application.
+3. Click + Add a permission.
+4. Click on the APIs my organization uses.
+5. In the search box, enter Microsoft Mobile Application Management.
+6. Under Delegated Permissions, select the DeviceManagementManagedApps.ReadWrite: Read and Write the User's App Management Data* checkbox.
+7. Click Add permissions.
 
 ## Features
 List of MSAL and MAM features in the source code: 
