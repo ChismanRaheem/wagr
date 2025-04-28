@@ -93,12 +93,12 @@
     MSALCompletionBlock wagrMSALCompletionBlock = ^(MSALResult *result, NSError *error) {
         if (!error)
         {
-                        //create variable to hold objectId
-                        NSString *accountIdentifer =[[result.account valueForKey:@"_homeAccountId"] valueForKey:@"_objectId"]?: @"";
+            //create variable to hold objectId
+            NSString *accountIdentifer =[[result.account valueForKey:@"_homeAccountId"] valueForKey:@"_objectId"]?: @"";
                         
-                        //confirm by displaying in console
-                        NSLog(@"Sign in for %@ was successful", result.account.username);
-                        NSLog(@"Confirm %@ identifier", accountIdentifer);
+            //confirm by displaying in console
+            NSLog(@"Sign in for %@ was successful", result.account.username);
+            NSLog(@"Confirm %@ identifier", accountIdentifer);
 
             // This will initiate the register and enroll precess for MAM.
             // Link: https://docs.microsoft.com/mem/intune/developer/app-sdk-ios#apps-that-already-use-adal-or-msal
